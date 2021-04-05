@@ -5,7 +5,7 @@ let fs = require('fs');
 
 let db;
 let mongoClient = require('mongodb').MongoClient;
-mongoClient.connect('mongodb+srv://ziming99:coolsinxx2@cluster0.e9nwn.mongodb.net/',(err,client)=>{
+mongoClient.connect('mongodb+srv://ziming99:coolsinxx2@cluster0.e9nwn.mongodb.net/test',(err,client)=>{
     db = client.db('fitness');
 })
 app.use(express.json());
