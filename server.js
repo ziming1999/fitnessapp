@@ -24,24 +24,24 @@ app.use(function(req,res,next){
     next();
 })
 
-// var imagePath = path.resolve(__dirname,"images");
-// app.use('/images',express.static(imagePath));
+var imagePath = path.resolve(__dirname,"images");
+app.use('/images',express.static(imagePath));
 
 
-// app.use(function(req,res,next){
-//     var filePath = path.join(__dirname,"static",req.url);
-//     fs.stat(filePath,function(err,fileInfo){
-//         if(err)
-//         {
-//             next();
-//             return;
-//         }
-//         if(fileInfo.isFile())
-//             res.sendFile(filePath);
-//         else
-//             next();
-//     })
-// })
+app.use(function(req,res,next){
+    var filePath = path.join(__dirname,"static",req.url);
+    fs.stat(filePath,function(err,fileInfo){
+        if(err)
+        {
+            next();
+            return;
+        }
+        if(fileInfo.isFile())
+            res.sendFile(filePath);
+        else
+            next();
+    })
+})
 app.param('collectionName',(req,res,next,collectionName)=>{
     req.collection = db.collection(collectionName);
     return next();
